@@ -11,55 +11,27 @@ app.set("view engine", "handlebars");
 PORT = process.env.PORT;
 
 app.get("/", function(req, res){
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/main.html");
 })
 
-app.get("/room1", function(req, res){
-  res.sendFile(__dirname + "/index.html");
+app.get("/:room", function(req, res){
+  res.sendFile(__dirname + "/chatroom.html");
+  makeDatabase(req.params.room);
 })
-
-//connsection from specific room;
-// const main = io.of('/main');
-// main.on('connection', function(socket){
-//   console.log('someone connected');
-//   console.log(socket.adapter.nsp.name);
-//   socket.on("chat message", function(msg){
-//     console.log(msg)
-//     //main.emit("chat message", msg);
-//     socket.to("/main").emit('chat message', msg);
-//   })
-// });
-// main.emit('hi', 'everyone!');
-
-
-// io.on("connection", function(socket){
-//   console.log(socket.client.server);
-
-//   socket.on("chat message", function(msg){
-//     console.log(msg);
-//     socket.to(socket.nsp.name).emit('chat message', msg);
-//   })
-
-//   // socket.on("chat message", function(msg){
-//   //   console.log("message: " + msg);
-//   //   io.emit("chat message", msg)
-//   // })
-
-//   socket.on("disconnect", function(){
-//     console.log("user disconnected");
-//   })
-// })
 
 io.on("connection", function(socket){
-  let room_name = socket.handshake.headers.referer
-
-  socket.join(room_name);
-  socket.on('chat message', function (msg) {
-    console.log(msg);
-    io.to(room_name).emit('chat message', msg);
- });
+  let url = socket.handshake.headers.referer.split("/")
+  let roomName = url[url.length -1]
+  socket.join(roomName);
+  socket.on('chatMessage', function (msg) {
+    io.to(roomName).emit('chatMessage', msg);
+  });
 })
 
 http.listen(PORT, function(){
   console.log("listening on port: ", PORT);
 })
+
+function makeDatabase (roomName) {
+
+}
