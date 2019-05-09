@@ -1,47 +1,32 @@
 require("dotenv").config();
-var express = require("express");
-var exphbs = require("express-handlebars");
 
-var db = require("./models");
+const app = require("express")();
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
+const exphbs = require("express-handlebars");
 
-var app = express();
-var PORT = process.env.PORT || 3000;
-
-// Middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(express.static("public"));
-
-// Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
+app.engine("handlebars", exphbs({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
-// Routes
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+PORT = process.env.PORT;
 
-var syncOptions = { force: false };
+app.get("/", function(req, res){
+  res.render("index");
+})
 
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
-}
+io.on("connection", function(socket){
+  console.log("an user connected");
 
-// Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
-});
+  socket.on("chat message", function(msg){
+    console.log("message: " + msg);
+    io.emit("chat message", msg)
+  })
 
-module.exports = app;
+  socket.on("disconnect", function(){
+    console.log("user disconnected");
+  })
+})
+
+http.listen(PORT, function(){
+  console.log("listening on port: ", PORT);
+})
