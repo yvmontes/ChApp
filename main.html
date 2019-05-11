@@ -1,0 +1,21 @@
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script>
+    $(function() {
+        const socket = io()
+        $("form").submit(function(e) {
+            sessionStorage.setItem("username", $("#m").val())
+        });
+    });
+</script>
+
+<form>
+    <input type="text" id="m">
+    <button type="submit">submit</button>
+</form>
+
+<a href="/room1">Room 1</a>
+<a href="/room2">Room 2</a>
+<a href="/room3">Room 3</a>
