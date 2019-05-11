@@ -10,8 +10,19 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    
-    <link rel="stylesheet" href="../public/style.css" type="text/css" />
+<link rel="stylesheet" href="../public/style.css" type="text/css" />
+<script>
+window.onload=function(){
+    var form = document.getElementsByTagName("form")[0];
+    form.onsubmit = function(e){
+        e.preventDefault();
+        var messege = document.getElementsByName("messege")[0].value;
+        var newDiv = document.createElement("div");
+        newDiv.innerText = messege;
+        document.getElementById("chatroom").appendChild(newDiv);
+    }
+}
+</script>
 
 </head>
 
@@ -57,31 +68,13 @@
 
 
 
-
-
-    <!-- <div class="container">
-
-    <div id="chatwindow">
-        <div id="chatroom"></div>
-
-        <div id="users"></div>
-
-        <div id="form">
-            <form>
-                <input name="firstname" type="textarea">
-
-                <button>Send</button>
-            </form>
-        </div>
-
-    </div> -->
-                       
+                 
     
                     </div>
                 </div>
             </div>
-          
-    
+
+
         </div>
 
 <!-- JAVASCRIPT -->
