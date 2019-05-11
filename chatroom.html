@@ -8,21 +8,34 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-$(function() {
-    const socket = io()
-    $("form").submit(function(e) {
-        e.preventDefault(); // prevents page reloading
-        socket.emit("chatMessage", $("#m").val());
-        $("#m").val("");
-        return false;
-    });
 
-    socket.on("chatMessage", function(msg) {
-        $("#messages").append($("<li>").text(msg));
+    $(function() {
+        const socket = io()
+        $("form").submit(function(e) {
+            e.preventDefault(); // prevents page reloading
+            if($("#m").val()){
+                outgoingMessage = {
+                username: sessionStorage.getItem("username"),
+                message: $("#m").val(),
+            }
+            socket.emit("chatMessage", outgoingMessage);
+            $("#m").val("");
+            return false;
+            }
+        });
+
+        socket.on("chatMessage", function(msg) {
+            console.log(`username ${msg.username}, msg ${msg.message}`)
+            $("#messages").append($("<li>").text(msg.message + msg.username));
+        });
+
+        socket.on("initialMessages", function(msg){
+            console.log(msg)
+        })
     });
-});
     </script>
 </head>
+
 <body>
     <ul id="messages"></ul>
     <form action="">
