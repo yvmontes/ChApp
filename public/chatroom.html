@@ -7,39 +7,55 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ChApp</title>
 
-    
+    <!-- <script src="public/js/index.js"></script> -->
     <link rel="stylesheet" href="../public/style.css" type="text/css" />
+<script>
+window.onload=function(){
+    var form = document.getElementsByTagName("form")[0];
+    form.onsubmit = function(e){
+        e.preventDefault();
+        var messege = document.getElementsByName("messege")[0].value;
+        var newDiv = document.createElement("div");
+        newDiv.innerText = messege;
+        document.getElementById("chatroom").appendChild(newDiv);
+    }
+}
+</script>
 
 </head>
 
 <body>
 
-
-
-
-    <div class="container">
+ <div class="container">
 
     <div id="chatwindow">
-        <div id="chatroom"></div>
+        <div id="chatroom">
+            <form action="">
+                <input name="messege" type="textarea">
+                <button>send</button>
+            </form>
+            <br>
+
+        </div>
 
         <div id="users"></div>
 
-        <div id="form">
+        <!-- <div id="form">
             <form>
                 <input name="firstname" type="textarea">
 
                 <button>Log in</button>
             </form>
-        </div>
+        </div> -->
 
     </div>
-                       
-    
+
+
                     </div>
                 </div>
             </div>
-          
-    
+
+
         </div>
 
 
