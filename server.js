@@ -1,29 +1,18 @@
 require("dotenv").config();
-var express = require("express");
-var exphbs = require("express-handlebars");
 
-var app = express();
-var PORT = process.env.PORT || 3000;
+const app = require("express")();
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
+const exphbs = require("express-handlebars");
 
-// Middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(express.static("public"));
-
-// Handlebars
-app.engine(
-  "handlebars",
-  exphbs({
-    defaultLayout: "main"
-  })
-);
+app.engine("handlebars", exphbs({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
 // //Handlebars with route
-app.get("/", function(req, res) {
+// app.get("/", function(req, res) {
 
-res.render("index", );
-  });
+// res.render("index", );
+//   });
 // app.get("/dog", function(req, res) {
 //   // Handlebars requires an object to be sent to the dog.handlebars file. Lucky for us, animals[0] is an object!
 
@@ -51,6 +40,27 @@ res.render("index", );
 
 
 
-app.listen(PORT, function() {
-  console.log("app listening on: " + PORT);
-});
+
+PORT = process.env.PORT;
+
+app.get("/", function(req, res){
+  res.render("index");
+})
+
+io.on("connection", function(socket){
+  console.log("an user connected");
+
+  socket.on("chat message", function(msg){
+    console.log("message: " + msg);
+    io.emit("chat message", msg)
+  })
+
+  socket.on("disconnect", function(){
+    console.log("user disconnected");
+  })
+})
+
+http.listen(PORT, function(){
+  console.log("listening on port: ", PORT);
+})
+
