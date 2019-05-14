@@ -26,7 +26,7 @@
 
         socket.on("chatMessage", function(msg) {
             console.log(`username ${msg.username}, msg ${msg.message}`)
-            $("#messages").append($("<li>").text(msg.message + msg.username));
+            $("#messages").append($("<li>").text(msg.username + ": " + msg.message));
         });
 
         socket.on("initialMessages", function(msg){
