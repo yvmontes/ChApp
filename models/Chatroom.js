@@ -1,9 +1,11 @@
-const orm = require("../config/orm")
+const orm = require("../config/orm");
 
-let chatroom = function(name){
-    this.name = name;
+let Chatroom = function(name) {
+  this.name = name;
 
-    addMessage: function(message){
-        orm.AddChat(name, message);
-    }
-}
+  addMessage: message => {
+    orm.AddChat(this.name, message);
+  };
+};
+
+module.exports = Chatroom;

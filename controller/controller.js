@@ -1,3 +1,5 @@
-let Chatroom = require("../models/Chatroom")
+const Chatroom = require("../models/Chatroom");
 
 let generalChat = new Chatroom("generalChat");
+
+module.exports = generalChat;
