@@ -5,7 +5,7 @@
   body {
     background-image: url("images/windows-98-wallpaper.jpg");
     align-content: center;
-    font-family: sans-serif
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
   }
 
 
@@ -93,6 +93,9 @@
 
 #inputstyle {
   border: 1px solid #000;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
 }
 
 
