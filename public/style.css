@@ -3,8 +3,9 @@
   }
   
   body {
-    background: #55939c;
+    background-image: url("images/windows-98-wallpaper.jpg");
     align-content: center;
+    font-family: sans-serif
   }
 
 
@@ -42,6 +43,10 @@
   width: 100%;
   height: 100%;
   border: 1px solid black;
+  -moz-box-shadow: inset 0 0 5px #888;
+  -webkit-box-shadow: inset 0 0 5px#888;
+  box-shadow: inset 0 0 5px #888;
+  margin-top: 10px;
 }
 
 
@@ -51,6 +56,10 @@
   width: 100%;
   height: 100%;
   border: 1px solid black;
+  -moz-box-shadow: inset 0 0 5px #888;
+  -webkit-box-shadow: inset 0 0 5px#888;
+  box-shadow: inset 0 0 5px #888;
+  margin-top: 10px;
 }
 
 #windowbutton {
@@ -65,9 +74,26 @@
 
 #textbox {
   border: 1px solid #000;
-  width: 100%
+  width: 100%;
+  -moz-box-shadow: inset 0 0 5px #888;
+  -webkit-box-shadow: inset 0 0 5px#888;
+  box-shadow: inset 0 0 5px #888;
 }
 
+#loginbox {
+  width: 30%;
+  height: 150px
+}
+
+#login-title {
+  background-image: linear-gradient(to right, #0c153e ,#97b9dc);
+  color: #fff;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 1px solid black;
+  padding: 3px;
+  width: 30%;
+}
 
 
 
@@ -84,6 +110,8 @@
   padding: 10px;
   height: 300px; /* Should be removed. Only for demonstration */
 }
+/* 
+
 
 /* Clear floats after the columns */
 .row:after {
