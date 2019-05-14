@@ -44,6 +44,7 @@
   height: 100%;
   border: 1px solid black;
   margin-top: 20px;
+  overflow: scroll;
 }
 
 
@@ -54,6 +55,7 @@
   height: 100%;
   border: 1px solid black;
   margin-top: 20px;
+  overflow: scroll;
 }
 
 #windowbutton {
@@ -106,7 +108,7 @@
   float: left;
   width: 70%;
   padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
+  height: 300px; 
 }
 /* 
 
