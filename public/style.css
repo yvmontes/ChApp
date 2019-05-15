@@ -5,7 +5,7 @@
   body {
     background-color: #357d80;
     align-content: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family: 'Rajdhani', sans-serif;
   }
 
 
@@ -45,6 +45,7 @@
   height: 100%;
   border: 1px solid black;
   overflow: scroll;
+  font-family: 'Times New Roman', Times, serif
 }
 
 
@@ -55,6 +56,7 @@
   height: 100%;
   border: 1px solid black;
   overflow: scroll;
+  font-family: 'Times New Roman', Times, serif
 }
 
 #windowbutton {
