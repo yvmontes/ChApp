@@ -5,28 +5,36 @@ const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 PORT = process.env.PORT;
 
-app.get("/", function(req, res){
-  res.render("index");
-})
+app.get("/", function(req, res) {
+  res.sendFile(__dirname + "/main.html");
+});
 
-io.on("connection", function(socket){
-  console.log("an user connected");
+app.get("/:room", function(req, res) {
+  res.sendFile(__dirname + "/chatroom.html");
+});
 
-  socket.on("chat message", function(msg){
-    console.log("message: " + msg);
-    io.emit("chat message", msg)
-  })
+io.on("connection", function(socket) {
+  console.log("newConnection");
 
-  socket.on("disconnect", function(){
-    console.log("user disconnected");
-  })
-})
+  let url = socket.handshake.headers.referer.split("/");
+  let roomName = url[url.length - 1];
+  socket.join(roomName);
 
-http.listen(PORT, function(){
+  socket.on("chatMessage", function(incomingMessage) {
+    let outgoingMessage = {
+      username: incomingMessage.username,
+      message: incomingMessage.message
+    };
+
+    io.to(roomName).emit("chatMessage", outgoingMessage);
+  });
+});
+
+http.listen(PORT, function() {
   console.log("listening on port: ", PORT);
-})
+});
