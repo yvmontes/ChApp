@@ -29,32 +29,51 @@ window.onload=function(){
 <body>
 
 <div class="container">
-    <div id="window-title"><img src="images/chaticon.png" width="25px"> Welcome to ChApp</div>  
+    <div id="window-title"><img src="images/chaticon.png" width="25px"> Welcome to ChApp <div class="imgholder"><img src="images/mmc.png" width="70px"></div></div>  
     <div class="chatapp">
+
+            <div class="dropdown">
+                    <a href="" class="hvr-box-shadow-inset">View</a>
+                    <div class="dropdown-content">
+                      <a href="#">Users</a>
+                      <a href="#">Rooms</a>
+                      <a href="#">Create Room</a>
+                    </div>
+                  </div>
+                   &nbsp; <a href="">Help</a>
+        <hr>
+
         <div class="row">
 
             <div class="column">
                 <div id="chatwindow-div">
                     <h2>Column 1</h2>
-                    <p>Chatroom</p>
+                    <p>Chatroom
+                        <br/>
+                        Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Quis varius quam quisque id diam vel quam. At varius vel pharetra vel turpis nunc eget lorem. Quis hendrerit dolor magna eget est lorem. Ullamcorper eget nulla facilisi etiam dignissim diam quis. Aliquam etiam erat velit scelerisque. Montes nascetur ridiculus mus mauris vitae ultricies leo integer. At quis risus sed vulputate. A pellentesque sit amet porttitor. Porta nibh venenatis cras sed felis eget velit. Morbi tristique senectus et netus et malesuada fames. In fermentum posuere urna nec tincidunt praesent semper feugiat. Leo in vitae turpis massa sed elementum tempus egestas sed. Auctor neque vitae tempus quam. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Risus viverra adipiscing at in tellus integer feugiat scelerisque. Cursus turpis massa tincidunt dui ut. Massa sed elementum tempus egestas sed sed. Vel risus commodo viverra maecenas accumsan lacus. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia.
+
+
+                    </p>
                 </div>
             </div>
 
-            <div class="column">
+            <div class="column2">
                 <div id="users-div">
-                    <h2>Column 2</h2>
-                    <p>Usernames</p>
+                    <p><strong>Users</strong> (25)
+                    <br/>
+                    Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Quis varius quam quisque id diam vel quam. At varius vel pharetra vel turpis nunc eget lorem. Quis hendrerit dolor magna eget est lorem. Ullamcorper eget nulla facilisi etiam dignissim diam quis. Ullamcorper eget nulla facilisi etiam dignissim diam quis. 
+                    </p>
                 </div>
             </div>
 
+          <div class="row" id="form-div">
+                <form>
+                    <textarea class="form-control" id ="textbox" rows="4" cols="150" placeholder="Type your message here..."></textarea>
+                    <br />
+                    <button id="windowbutton">Send</button>
+                </form>
         </div>
 
-        <div class="row" id="form-div">
-            <form>
-                <textarea class="form-control" rows="4" cols="50" placeholder="Type your message here..."></textarea>
-                <br />
-                <button id="windowbutton">Send</button>
-            </form>
         </div>
     </div>
 </div>
