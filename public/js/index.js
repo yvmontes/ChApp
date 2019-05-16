@@ -19,9 +19,31 @@ $(function() {
 function process(e) {
   var code = (e.keyCode ? e.keyCode : e.which);
   if (code == 13) { //Enter keycode
-      alert("Sending your Message : " + document.getElementByName('message').value);
+      alert("Sending your Message : " + document.getElementById('textbox').value);
   }
 }
+
+
+// submit message on enter usinf jquery
+// $(function(){
+
+//   $('input[name="butClickHere"]').click(function(){
+//     alert('You clicked me...!');
+//   });
+  
+  
+//   //press enter on text area..
+//  $('#textbox').keypress(function (e) {
+//  var key = e.which;
+//  if(key == 13)  // the enter key code
+//   {
+//     $('input[name = butClickHere]').click();
+//     return false;  
+//   }
+// });
+  
+// });
+
 
 // changes the users-div to users or rooms
 
