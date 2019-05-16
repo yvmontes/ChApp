@@ -10,30 +10,37 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
-    
+
 <link rel="stylesheet" href="../public/style.css" type="text/css" />
 <script>
-window.onload=function(){
-    var form = document.getElementsByTagName("form")[0];
-    form.onsubmit = function(e){
-        e.preventDefault();
-        var messege = document.getElementsByName("messege")[0].value;
-        var newDiv = document.createElement("div");
-        newDiv.innerText = messege;
-        document.getElementById("chatroom").appendChild(newDiv);
+    window.onload=function(){
+        var form = document.getElementsByTagName("form")[0];
+        form.onsubmit = function(e){
+            e.preventDefault();
+            var messege = document.getElementsByName("messege")[0].value;
+            var newDiv = document.createElement("div");
+            newDiv.className = "message";
+            newDiv.innerText = messege;
+            // newDiv.class = "divWrapper";
+            document.getElementById("chatwindow-div").prepend(newDiv);
+            //change percentage of the div to start at the bottom
+        }
     }
-}
-</script>
+    </script>
 
 </head>
 
 <body>
 
 <div class="container">
+<<<<<<< HEAD
+    <div id="window-title"><img src="images/chaticon2.png" width="25px"> Welcome to ChApp <div class="imgholder"><img src="images/mmc.png" width="70px"></div></div>
+=======
 
 
     <div class="window-outline">
     <div id="window-title"><img src="images/chaticon2.png" width="25px"> Welcome to ChApp <div class="imgholder"><img src="images/mmc.png" width="70px"></div></div>  
+>>>>>>> ff93c37bd9804b73d352f9e7a19c251e3085d9be
     <div class="chatapp">
 
 
@@ -43,7 +50,7 @@ window.onload=function(){
                         <a href="#" id="users">Users</a>
                         <a href="#" id="rooms">Rooms</a>
                       <a href="createroom.html">Create Room</a>
-                      
+
                     </div>
                   </div>
                    &nbsp; <a href="" class="hvr-box-shadow-inset">Help</a>
@@ -52,13 +59,18 @@ window.onload=function(){
         <div class="row">
 
             <div class="column">
-                <div id="chatwindow-div">
-                    <p>Chatroom
+                <div id="chatwindow-div" class="message" >
+                        <!-- style="
+                        display: flex;
+                        flex-direction: row;
+                        align-items: flex-end;" -->
+                    <!-- <div class="divWrapper">
+
+                    </div> -->
+                    <!-- <p>Chatroom
                         <br/>
                         Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Quis varius quam quisque id diam vel quam. At varius vel pharetra vel turpis nunc eget lorem. Quis hendrerit dolor magna eget est lorem. Ullamcorper eget nulla facilisi etiam dignissim diam quis. Aliquam etiam erat velit scelerisque. Montes nascetur ridiculus mus mauris vitae ultricies leo integer. At quis risus sed vulputate. A pellentesque sit amet porttitor. Porta nibh venenatis cras sed felis eget velit. Morbi tristique senectus et netus et malesuada fames. In fermentum posuere urna nec tincidunt praesent semper feugiat. Leo in vitae turpis massa sed elementum tempus egestas sed. Auctor neque vitae tempus quam. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Risus viverra adipiscing at in tellus integer feugiat scelerisque. Cursus turpis massa tincidunt dui ut. Massa sed elementum tempus egestas sed sed. Vel risus commodo viverra maecenas accumsan lacus. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia.
-
-
-                    </p>
+                    </p> -->
                 </div>
             </div>
 
@@ -66,15 +78,20 @@ window.onload=function(){
                 <div id="users-div">
                     <p><strong>Users</strong> (25)
                     <br/>
+<<<<<<< HEAD
+                    Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Quis varius quam quisque id diam vel quam. At varius vel pharetra vel turpis nunc eget lorem. Quis hendrerit dolor magna eget est lorem. Ullamcorper eget nulla facilisi etiam dignissim diam quis. Ullamcorper eget nulla facilisi etiam dignissim diam quis.
+                    </p>
+=======
                     Currently showing users
                     
                 </p>
+>>>>>>> ff93c37bd9804b73d352f9e7a19c251e3085d9be
                 </div>
             </div>
 
           <div class="row" id="form-div">
                 <form>
-                    <textarea class="form-control" id ="textbox" rows="4" cols="150" placeholder="Type something..."></textarea>
+                    <textarea name="messege" class="form-control" id ="textbox" rows="4" cols="150" placeholder="Type something..."></textarea>
                     <br />
                     <button id="windowbutton">Send</button>
                 </form>
