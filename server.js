@@ -1,40 +1,36 @@
 require("dotenv").config();
-
 const app = require("express")();
 const http = require("http").Server(app);
-const io = require("socket.io")(http);
 const exphbs = require("express-handlebars");
+const io = require("socket.io")(http);
+const Chatrooms = require("./models/Chatrooms");
+require("./connections/socket")(io);
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 PORT = process.env.PORT;
 
+app.get("/createRoom", function(req, res) {
+  res.sendFile(__dirname + "/create.html");
+});
+
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/main.html");
 });
 
-app.get("/:room", function(req, res) {
-  res.sendFile(__dirname + "/chatroom.html");
-});
-
-io.on("connection", function(socket) {
-  console.log("newConnection");
-
-  let url = socket.handshake.headers.referer.split("/");
-  let roomName = url[url.length - 1];
-  socket.join(roomName);
-
-  socket.on("chatMessage", function(incomingMessage) {
-    let outgoingMessage = {
-      username: incomingMessage.username,
-      message: incomingMessage.message
-    };
-
-    io.to(roomName).emit("chatMessage", outgoingMessage);
-  });
+app.get("/rooms/:room", function(req, res) {
+  if (Chatrooms.chatRooms.includes(req.params.room)) {
+    res.sendFile(__dirname + "/chatroom.html");
+  } else {
+    res.json("room not available");
+  }
 });
 
 http.listen(PORT, function() {
   console.log("listening on port: ", PORT);
+  //populate room array;
+  Chatrooms.populateArray(function() {
+    Chatrooms.initializeChatRooms();
+  });
 });
