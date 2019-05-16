@@ -1,4 +1,5 @@
-const connection = require("./mySql");
+const connection = require("../connections/mySql");
+
 let orm = {
   SelectAll: (table, callback) => {
     connection.query(
@@ -12,17 +13,44 @@ let orm = {
     );
   },
 
-  AddChat: table => {
+  AddChat: (table, message, username) => {
     connection.query(
-      "INSERT INTO " + table + "(username, chat, chatTime) VALUES ("
+      "INSERT INTO " +
+        table +
+        " (username, chat, chatTime) VALUES ('" +
+        username +
+        "', '" +
+        message +
+        "', UTC_TIMESTAMP());"
     );
-  }
-  // connection.query("select * from generalChat order by chatTime DESC limit 100", function(err, res){
-  //     if (err) throw err;
-  //     io.to(`${socket.id}`).emit('initialMessages', res);
-  //   })
+  },
 
-  //   connection.query("INSERT INTO generalChat (username, chat, chatTime) VALUES (?, ?, UTC_TIMESTAMP())", [incomingMessage.username, incomingMessage.message])
+  newTable: table => {
+    connection.query(
+      "CREATE TABLE " +
+        table +
+        " (username varchar(20) NOT NULL, chat varchar(255) NOT NULL, chatTime datetime NOT NULL PRIMARY KEY);"
+    );
+    connection.query(
+      "INSERT INTO chatrooms (chatRoomName) VALUES ('" + table + "')"
+    );
+  },
+
+  removeTable: table => {
+    connection.query("DELETE FROM CHATROOMS WHERE chatRoomName = " + table);
+    connection.query("drop table " + table);
+  },
+
+  selectChatrooms: () => {
+    return new Promise(resolve => {
+      connection.query("select chatRoomName from chatrooms", function(
+        _req,
+        res
+      ) {
+        resolve(res);
+      });
+    });
+  }
 };
 
 module.exports = orm;
