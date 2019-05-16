@@ -147,6 +147,11 @@
   float: right;
 }
 
+hr {
+  height: 1px;
+  border-bottom: 1px solid #e2e2e2;
+}
+
 
 
 /* box shadow inset hover effect */
