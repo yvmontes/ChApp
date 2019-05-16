@@ -42,7 +42,7 @@ var usersContent = document.getElementById("users");
 var roomContent = document.getElementById("rooms");
 
 users.onclick = function(){
-  document.getElementById("users-div").innerHTML = "Currently showing users";
+  document.getElementById("users-div").innerHTML = "<p><strong>Users</strong> (25)<br/>Currently showing users";
 }
 
 rooms.onclick = function(){
