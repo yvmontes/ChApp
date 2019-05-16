@@ -1,3 +1,5 @@
+// adds the messages when clicking submit
+
 $(function() {
   var socket = io();
   $("form").submit(function(e) {
@@ -12,30 +14,38 @@ $(function() {
   });
 });
 
+// submit message on enter
+
+function process(e) {
+  var code = (e.keyCode ? e.keyCode : e.which);
+  if (code == 13) { //Enter keycode
+      alert("Sending your Message : " + document.getElementById('textbox').value);
+  }
+}
+
+
+// submit message on enter usinf jquery
+// $(function(){
+
+//   $('input[name="butClickHere"]').click(function(){
+//     alert('You clicked me...!');
+//   });
+  
+  
+//   //press enter on text area..
+//  $('#textbox').keypress(function (e) {
+//  var key = e.which;
+//  if(key == 13)  // the enter key code
+//   {
+//     $('input[name = butClickHere]').click();
+//     return false;  
+//   }
+// });
+  
+// });
+
+
 // changes the users-div to users or rooms
-
-// var activeLink;
-// function changeUsersDiv (active){
-//     console.log(active);
-//     if (active !== undefined) {
-//         toggleDisplay();
-//         activeLanguage = active;  
-//         translateButtonClicked();
-//     }
-
-
-// switch (active) {
-            
-//   case 'users':
-//       console.log(activeLanguage);
-//       document.getElementById("users-div").innerHTML = "Currently showing users";
-//       break;
-//   case 'rooms':
-//       document.getElementById("users-div").innerHTML = "Currently showing rooms";
-//   default:
-//       break;
-// }
-// }
 
 var usersBox = document.getElementById("usersDiv");
 var usersContent = document.getElementById("users");
@@ -47,4 +57,10 @@ users.onclick = function(){
 
 rooms.onclick = function(){
   document.getElementById("users-div").innerHTML = "Currently showing rooms";
+}
+
+// back button
+
+function goBack() {
+  window.history.back();
 }
