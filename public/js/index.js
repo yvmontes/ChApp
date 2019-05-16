@@ -12,28 +12,39 @@ $(function() {
   });
 });
 
-// updates the UI based on the language selected.
-var activeLink;
-function changeUsersDiv(active) {
-  console.log(active);
-  if (active !== undefined) {
-    toggleDisplay();
-    activeLanguage = active;
-    translateButtonClicked();
-  }
+// changes the users-div to users or rooms
 
-  switch (active) {
-    case "users":
-      console.log(activeL);
-      //document.body.style.background="#1c3226";
-      document.getElementById("users-div").innerHTML =
-        "currently displaying users";
-      break;
-    case "rooms":
-      //document.body.style.background="#a23b00";
-      document.getElementById("users-div").innerHTML =
-        "Currently displaying rooms";
-    default:
-      break;
-  }
+// var activeLink;
+// function changeUsersDiv (active){
+//     console.log(active);
+//     if (active !== undefined) {
+//         toggleDisplay();
+//         activeLanguage = active;  
+//         translateButtonClicked();
+//     }
+
+
+// switch (active) {
+            
+//   case 'users':
+//       console.log(activeLanguage);
+//       document.getElementById("users-div").innerHTML = "Currently showing users";
+//       break;
+//   case 'rooms':
+//       document.getElementById("users-div").innerHTML = "Currently showing rooms";
+//   default:
+//       break;
+// }
+// }
+
+var usersBox = document.getElementById("usersDiv");
+var usersContent = document.getElementById("users");
+var roomContent = document.getElementById("rooms");
+
+users.onclick = function(){
+  document.getElementById("users-div").innerHTML = "Currently showing users";
+}
+
+rooms.onclick = function(){
+  document.getElementById("users-div").innerHTML = "Currently showing rooms";
 }
