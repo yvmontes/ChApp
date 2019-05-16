@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+
+    $(function() {
+        const socket = io()
+        $("form").submit(function(e) {
+            e.preventDefault(); // prevents page reloading
+            if($("#m").val()){
+                outgoingMessage = {
+                username: sessionStorage.getItem("username"),
+                message: $("#m").val(),
+            }
+            socket.emit("chatMessage", outgoingMessage);
+            $("#m").val("");
+            return false;
+            }
+        });
+
+        socket.on("chatMessage", function(msg) {
+            console.log(`username ${msg.username}, msg ${msg.message}`)
+            $("#messages").append($("<li>").text(msg.username + ": " + msg.message));
+        });
+
+        socket.on("initialMessages", function(msg){
+            console.log(msg)
+        })
+    });
+    </script>
+</head>
+
+<body>
+    <ul id="messages"></ul>
+    <form action="">
+        <input id = "m" autocomplete="off"/><button>send</button>
+    </form>
+</body>
+</html>
