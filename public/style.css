@@ -49,7 +49,7 @@
   height: 100%;
   border: 1px solid black;
   overflow: scroll;
-  font-family: 'Times New Roman', Times, serif
+  overflow-x: hidden;
 }
 
 
@@ -60,7 +60,7 @@
   height: 100%;
   border: 1px solid black;
   overflow: scroll;
-  font-family: 'Times New Roman', Times, serif
+  overflow-x: hidden;
 }
 
 #windowbutton {
