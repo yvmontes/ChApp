@@ -15,26 +15,30 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 PORT = process.env.PORT;
 
+app.get("/help", function(req, res) {
+    res.sendFile(path.join(__dirname, "/public/help.html"));
+});
+
 app.get("/createRoom", function(req, res) {
-  res.sendFile(path.join(__dirname, "/public/createroom.html"));
+    res.sendFile(path.join(__dirname, "/public/createroom.html"));
 });
 
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "/public/index.html"));
+    res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
 app.get("/rooms/:room", function(req, res) {
-  if (Chatrooms.chatRooms.includes(req.params.room)) {
-    res.sendFile(path.join(__dirname, "/public/chatroom.html"));
-  } else {
-    res.json("room not available");
-  }
+    if (Chatrooms.chatRooms.includes(req.params.room)) {
+        res.sendFile(path.join(__dirname, "/public/chatroom.html"));
+    } else {
+        res.sendFile(path.join(__dirname, "/public/createroom.html"));
+    }
 });
 
 http.listen(PORT, function() {
-  console.log("listening on port: ", PORT);
-  //populate room array;
-  Chatrooms.populateArray(function() {
-    Chatrooms.initializeChatRooms();
-  });
+    console.log("listening on port: ", PORT);
+    //populate room array;
+    Chatrooms.populateArray(function() {
+        Chatrooms.initializeChatRooms();
+    });
 });
