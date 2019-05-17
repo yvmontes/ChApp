@@ -38,7 +38,7 @@
                 console.log(`username ${msg.username}, msg ${msg.message}`)
                 $("#chatwindow-div").append($("<div>").text(msg.username + ": " + msg.message));
             });
-            socket.on("initialMessages", function(msg) {
+            socket.on("initialMessage", function(msg) {
                 console.log(msg)
             })
         });
