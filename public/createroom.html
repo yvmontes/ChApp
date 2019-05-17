@@ -30,15 +30,22 @@
         <div class="chatapp" id="createroom">
 
         <div class="row">
-            <div class="column">
+            <div class="column3">
                 <form>
                     Name of room:  <input name="firstname" type="text" id="inputstyle">
                     <br/><br/>
-
-                    <input type="checkbox" name="privacy" value="private" id="check"> Private <img src="images/lock.png" width="20px"><br>
+                    Do you want this room to be permanent?<br/>
+                    <input type="radio" name="permancence" value="permanent">Yes
+                    <input type="radio" name="permancence" value="ephemeral">No<br>
                     <br/>
-                    <button id="windowbutton">Create</button></form>
+                    Make room private?<br/>
+                    <input type="checkbox" name="privacy" value="private" id="check"> Private <img src="images/lock.png" width="20px">
+
+                    <br/><br/>
+                    <div style="float: left"><button id="windowbutton">Create</button></div>
                 </form>
+
+                <div> &nbsp; <button id="windowbutton" onclick="goBack()">Cancel</button></div>
 
                 </div>
             </div>

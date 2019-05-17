@@ -8,8 +8,9 @@
     <title>ChApp</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="/style.css" type="text/css" />
+    <link rel="stylesheet" href="../public/style.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
+
     
     <script src="js/index.js"></script>
 </head>
@@ -24,25 +25,35 @@
 
     <div class="container">
         
-        <div id="login-title"><img src="images/chaticon2.png" width="25px"> ChApp - Log In <div class="imgholder"><img src="images/mmc.png" width="70px"></div></div>  
+        <div id="help-title"><img src="images/chaticon2.png" width="25px"> ChApp - Help <div class="imgholder"><img src="images/mmc.png" width="70px"></div></div>  
 
-        <div class="chatapp" id="loginbox">
+        <div class="chatapp" id="help">
 
         <div class="row">
             <div class="column3">
-                <form>
-                    Username:  <input name="firstname" type="text" id="inputstyle">
-                    <br/><br/>
-                    <button id="windowbutton">Log in</button>
-                </form>
+               
+                <div class="content">
+                    <p><b>When you make your own chatroom is it permanent?</b><br/>
+                    You have the option to make it permanent. 
+                    </p>
+                    
+                    <p><b>What happens if I don't make it permanent?</b><br/>
+                    When all users leave the room the room will close on it's own if you do not make it permanent.
+                    </p>
 
+                    <b>What happens if I decide to make my room private?</b><br/>
+                    Only users with the link to the room will have access to it.
+                    
+                
+                    <br/><br/>
+                <div> <button id="windowbutton" onclick="goBack()">Cancel</button></div>
+                    
                 </div>
             </div>
 
         </div>
 
         </div>
-
     
     
     </div>
