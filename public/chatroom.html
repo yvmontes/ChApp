@@ -6,23 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ChApp</title>
-
+    <script src="/socket.io/socket.io.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
-    
-<link rel="stylesheet" href="../public/style.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <link rel="stylesheet" href="/style.css" type="text/css" />
 <script>
-window.onload=function(){
-    var form = document.getElementsByTagName("form")[0];
-    form.onsubmit = function(e){
-        e.preventDefault();
-        var messege = document.getElementsByName("messege")[0].value;
-        var newDiv = document.createElement("div");
-        newDiv.innerText = messege;
-        document.getElementById("chatroom").appendChild(newDiv);
-    }
-}
+// window.onload=function(){
+//     var form = document.getElementsByTagName("form")[0];
+//     form.onsubmit = function(e){
+//         e.preventDefault();
+//         var messege = document.getElementsByName("messege")[0].value;
+//         var newDiv = document.createElement("div");
+//         newDiv.innerText = messege;
+//         document.getElementById("chatroom").appendChild(newDiv);
+//     }
+// }
+
+$(function() {
+        const socket = io()
+        $("#windowbutton").click(function(e) {
+            console.log("clicked");
+            e.preventDefault(); // prevents page reloading
+            //remove true ad=nd check for empty string
+            if(true){
+                outgoingMessage = {
+                username: sessionStorage.getItem("username"),
+                message: $("#textbox").val(),
+                }
+                console.log($("#textbox").val())
+                // console.log(socket.emit());
+                console.log(outgoingMessage)
+                socket.emit("chatMessage", outgoingMessage);
+                $("#textbox").val("");
+                return false;
+            }
+        }); 
+        socket.on("chatMessage", function(msg) {
+            console.log(`username ${msg.username}, msg ${msg.message}`)
+            $("#messages").append($("<div>").text(msg.username + ": " + msg.message));
+        });
+        socket.on("initialMessages", function(msg){
+            console.log(msg)
+        })
+    });
 </script>
 
 </head>
@@ -30,10 +59,8 @@ window.onload=function(){
 <body>
 
 <div class="container">
-    <div id="window-title"><img src="images/chaticon2.png" width="25px"> Welcome to ChApp <div class="imgholder"><img src="images/mmc.png" width="70px"></div></div>  
+    <div id="window-title"><img src="/images/chaticon2.png" width="25px"> Welcome to ChApp <div class="imgholder"><img src="/images/mmc.png" width="70px"></div></div>  
     <div class="chatapp">
-
-
             <div class="dropdown">
                     <a href="#" class="hvr-box-shadow-inset">View</a>
                     <div class="dropdown-content">
@@ -45,15 +72,11 @@ window.onload=function(){
                   </div>
                    &nbsp; <a href="" class="hvr-box-shadow-inset">Help</a>
         <hr>
-
         <div class="row">
-
             <div class="column">
                 <div id="chatwindow-div">
-                    <p>Chatroom
+                    <p id="messages">Chatroom
                         <br/>
-                        Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Quis varius quam quisque id diam vel quam. At varius vel pharetra vel turpis nunc eget lorem. Quis hendrerit dolor magna eget est lorem. Ullamcorper eget nulla facilisi etiam dignissim diam quis. Aliquam etiam erat velit scelerisque. Montes nascetur ridiculus mus mauris vitae ultricies leo integer. At quis risus sed vulputate. A pellentesque sit amet porttitor. Porta nibh venenatis cras sed felis eget velit. Morbi tristique senectus et netus et malesuada fames. In fermentum posuere urna nec tincidunt praesent semper feugiat. Leo in vitae turpis massa sed elementum tempus egestas sed. Auctor neque vitae tempus quam. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Risus viverra adipiscing at in tellus integer feugiat scelerisque. Cursus turpis massa tincidunt dui ut. Massa sed elementum tempus egestas sed sed. Vel risus commodo viverra maecenas accumsan lacus. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia.
-
 
                     </p>
                 </div>
@@ -63,7 +86,9 @@ window.onload=function(){
                 <div id="users-div">
                     <p><strong>Users</strong> (25)
                     <br/>
-                    Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Quis varius quam quisque id diam vel quam. At varius vel pharetra vel turpis nunc eget lorem. Quis hendrerit dolor magna eget est lorem. Ullamcorper eget nulla facilisi etiam dignissim diam quis. Ullamcorper eget nulla facilisi etiam dignissim diam quis. 
+                    Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Quis varius quam quisque id diam vel quam. At varius vel pharetra vel 
+                    turpis nunc eget lorem. Quis hendrerit dolor magna eget est lorem. Ullamcorper eget nulla facilisi etiam dignissim diam quis. 
+                    Ullamcorper eget nulla facilisi etiam dignissim diam quis. 
                     </p>
                 </div>
             </div>
@@ -72,10 +97,9 @@ window.onload=function(){
                 <form>
                     <textarea class="form-control" id ="textbox" rows="4" cols="150" placeholder="Type something..."></textarea>
                     <br />
-                    <button id="windowbutton">Send</button>
+                    <button id="windowbutton" type="button">Send</button>
                 </form>
         </div>
-
         </div>
     </div>
 </div>
@@ -84,7 +108,7 @@ window.onload=function(){
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="./js/index.js"></script>
+<!-- <script src="./js/index.js"></script> -->
 </body>
 
 </html>
