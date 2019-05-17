@@ -36,10 +36,16 @@
             });
             socket.on("chatMessage", function(msg) {
                 console.log(`username ${msg.username}, msg ${msg.message}`)
-                $("#chatwindow-div").append($("<div>").text(msg.username + ": " + msg.message));
+                $("#chatwindow-div").prepend(`<p class="message">${msg.username}: ${msg.message}</p>`);
             });
             socket.on("initialMessage", function(msg) {
-                console.log(msg)
+                for(let i = msg.length; i > 0; i--){
+                    let username = msg[i -1].username
+                    let message = msg[i - 1].chat
+                    $("#chatwindow-div").prepend(`<p class="message">${username}: ${message}</p>`);
+                    console.log(username);
+                    console.log(message);
+                }
             })
         });
     </script>
@@ -71,7 +77,7 @@
             <div class="row">
                 <div class="column">
                     <div id="chatwindow-div" class="message">
-
+                        <p class="message">asdlfk</p>
                     </div>
                 </div>
 

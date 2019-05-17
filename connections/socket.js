@@ -18,12 +18,10 @@ module.exports = function(io) {
 
     socket.join(roomName);
 
-    let msg = async () => {
+    (async () => {
       let msg = await Chatrooms.getMessages(roomName);
-      return msg;
-    };
-
-    io.to(roomName).emit("initialMessage", msg());
+      io.to(roomName).emit("initialMessage", msg);
+    })();
 
     socket.on("chatMessage", function(incomingMessage) {
       console.log("message");
