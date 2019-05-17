@@ -29,7 +29,7 @@ let Chatrooms = {
   },
   getMessages: async table => {
     let MySqlMessages = await orm.SelectAll(table);
-    console.log(MySqlMessages);
+    return MySqlMessages;
   }
 };
 
