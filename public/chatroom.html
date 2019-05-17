@@ -6,10 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ChApp</title>
-
+    <script src="/socket.io/socket.io.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
+<<<<<<< HEAD
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <link rel="stylesheet" href="/style.css" type="text/css" />
+<script>
+// window.onload=function(){
+//     var form = document.getElementsByTagName("form")[0];
+//     form.onsubmit = function(e){
+//         e.preventDefault();
+//         var messege = document.getElementsByName("messege")[0].value;
+//         var newDiv = document.createElement("div");
+//         newDiv.innerText = messege;
+//         document.getElementById("chatroom").appendChild(newDiv);
+//     }
+// }
+
+$(function() {
+        const socket = io()
+        $("#windowbutton").click(function(e) {
+            console.log("clicked");
+            e.preventDefault(); // prevents page reloading
+            //remove true ad=nd check for empty string
+            if(true){
+                outgoingMessage = {
+                username: sessionStorage.getItem("username"),
+                message: $("#textbox").val(),
+                }
+                console.log($("#textbox").val())
+                // console.log(socket.emit());
+                console.log(outgoingMessage)
+                socket.emit("chatMessage", outgoingMessage);
+                $("#textbox").val("");
+                return false;
+            }
+        }); 
+        socket.on("chatMessage", function(msg) {
+            console.log(`username ${msg.username}, msg ${msg.message}`)
+            $("#messages").append($("<div>").text(msg.username + ": " + msg.message));
+        });
+        socket.on("initialMessages", function(msg){
+            console.log(msg)
+        })
+    });
+</script>
+=======
    
 
 <link rel="stylesheet" href="../public/style.css" type="text/css" />
@@ -28,16 +73,19 @@
         }
     }
     </script>
+>>>>>>> 73484b8c129eb75981cc72bc76a2c00f212211df
 
 </head>
 
 <body>
 
 <div class="container">
+<<<<<<< HEAD
+    <div id="window-title"><img src="/images/chaticon2.png" width="25px"> Welcome to ChApp <div class="imgholder"><img src="/images/mmc.png" width="70px"></div></div>  
+=======
     <div id="window-title"><img src="images/chaticon2.png" width="25px"> Welcome to ChApp <div class="imgholder"><img src="images/mmc.png" width="70px"></div></div>
+>>>>>>> 73484b8c129eb75981cc72bc76a2c00f212211df
     <div class="chatapp">
-
-
             <div class="dropdown">
                     <a href="#" class="hvr-box-shadow-inset">View</a>
                     <div class="dropdown-content">
@@ -49,14 +97,24 @@
                   </div>
                    &nbsp; <a href="help.html" class="hvr-box-shadow-inset">Help</a>
         <hr>
+<<<<<<< HEAD
+=======
 
         <b>General Chat</b>
 
+>>>>>>> 73484b8c129eb75981cc72bc76a2c00f212211df
         <div class="row">
-
             <div class="column">
+<<<<<<< HEAD
+                <div id="chatwindow-div">
+                    <p id="messages">Chatroom
+                        <br/>
+
+                    </p>
+=======
                 <div id="chatwindow-div" class="message" >
           
+>>>>>>> 73484b8c129eb75981cc72bc76a2c00f212211df
                 </div>
             </div>
 
@@ -64,9 +122,16 @@
                 <div id="users-div">
                     <p><strong>Users</strong> (25)
                     <br/>
+<<<<<<< HEAD
+                    Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Quis varius quam quisque id diam vel quam. At varius vel pharetra vel 
+                    turpis nunc eget lorem. Quis hendrerit dolor magna eget est lorem. Ullamcorper eget nulla facilisi etiam dignissim diam quis. 
+                    Ullamcorper eget nulla facilisi etiam dignissim diam quis. 
+                    </p>
+=======
                     Currently showing users
                     
                 </p>
+>>>>>>> 73484b8c129eb75981cc72bc76a2c00f212211df
                 </div>
             </div>
 
@@ -77,6 +142,11 @@
                     <!-- <textarea name="messege" class="form-control" id ="textbox" rows="4" cols="150" placeholder="Type something..." onkeypress="process(event, this)"></textarea>
                      -->
                     <br />
+<<<<<<< HEAD
+                    <button id="windowbutton" type="button">Send</button>
+                </form>
+        </div>
+=======
                     <button id="windowbutton">Send</button>
                     <!-- <input type="button" id="windowbutton" name="butClickHere" placeholder="click here" value="click here">
                  -->
@@ -84,6 +154,7 @@
         </div>
     </div>
 
+>>>>>>> 73484b8c129eb75981cc72bc76a2c00f212211df
         </div>
     </div>
 
@@ -94,7 +165,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="./js/index.js"></script>
+<!-- <script src="./js/index.js"></script> -->
 </body>
 
 </html>

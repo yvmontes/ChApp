@@ -4,7 +4,8 @@ module.exports = function(io) {
     console.log("newConnection");
 
     let url = socket.handshake.headers.referer.split("/");
-    let roomName = url[url.length - 1];
+    console.log(url);
+    let roomName = url[4];
 
     socket.on("createRoom", function(msg) {
       console.log(msg.roomName);
@@ -12,17 +13,14 @@ module.exports = function(io) {
       console.log(msg.private);
     });
 
-    if (/^[a-zA-Z0-9_]+$/.test(roomName)) {
-      if (Chatrooms.chatRooms.includes(roomName)) {
-        join(roomName, socket);
-      }
-    }
-  });
-
-  function join(roomName, socket) {
+    console.log(roomName, "roomName");
+    // if (/^[a-zA-Z0-9_]+$/.test(roomName)) {
+    //   if (Chatrooms.chatRooms.includes(roomName)) {
+    console.log("ifstatement");
     socket.join(roomName);
 
     socket.on("chatMessage", function(incomingMessage) {
+      console.log("message");
       let outgoingMessage = {
         username: incomingMessage.username,
         message: incomingMessage.message
@@ -34,5 +32,7 @@ module.exports = function(io) {
       );
       io.to(roomName).emit("chatMessage", outgoingMessage);
     });
-  }
+    //   }
+    // }
+  });
 };
