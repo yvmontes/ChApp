@@ -19,12 +19,16 @@ $(function() {
 function process(e) {
   var code = (e.keyCode ? e.keyCode : e.which);
   if (code == 13) { //Enter keycode
-      alert("Sending your Message : " + document.getElementById('textbox').value);
-  }
+      // alert("Sending your Message : " + document.getElementById('textbox').value);
+      var enterMessage = document.getElementById('textbox').value;
+      console.log(enterMessage);
+      // $("#messages").append($("<li>").text(enterMessage));
+      var textbox = document.getElementById('messages');
+          textbox.innerHTML += enterMessage;
+          
+  };
 }
-
-
-// submit message on enter usinf jquery
+// submit message on enter using jquery
 // $(function(){
 
 //   $('input[name="butClickHere"]').click(function(){
