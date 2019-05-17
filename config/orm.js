@@ -1,16 +1,18 @@
 const connection = require("../connections/mySql");
 
 let orm = {
-  SelectAll: (table, callback) => {
-    connection.query(
-      "select * from " + table + " order by chatTime DESC limit 100",
-      function() {
-        if (err) {
-          throw err;
+  SelectAll: table => {
+    return new Promise(resolve => {
+      connection.query(
+        "select * from " + table + " order by chatTime DESC limit 100",
+        function(err, res) {
+          if (err) {
+            throw err;
+          }
+          resolve(res);
         }
-        callback(result);
-      }
-    );
+      );
+    });
   },
 
   AddChat: (table, message, username) => {

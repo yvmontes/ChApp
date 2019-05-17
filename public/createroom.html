@@ -27,6 +27,7 @@
                     roomName: $("#inputstyle").val()
                 }
                 socket.emit("createRoom", outgoingMessage);
+                $("#inputstyle").val("");
             });
         });
     </script>
