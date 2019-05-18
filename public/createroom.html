@@ -20,11 +20,19 @@
         $(function() {
             const socket = io()
             $("#windowbutton").click(function(e) {
-                console.log("clicked");
                 e.preventDefault(); // prevents page reloading
                 //remove true ad=nd check for empty string
+                let permancence;
+                if(document.querySelector('input[name=permancence]:checked').value == "true") {
+                    permancence = true;
+                } else {
+                    permancence = false
+                }
+                console.log(document.querySelector('input[name=permancence]:checked').value)
+                console.log(permancence)
                 outgoingMessage = {
-                    roomName: $("#inputstyle").val()
+                    roomName: $("#inputstyle").val(),
+                    permanent: permancence
                 }
                 socket.emit("createRoom", outgoingMessage);
                 $("#inputstyle").val("");
@@ -47,13 +55,13 @@
                     <form>
                         Name of room: <input name="firstname" type="text" id="inputstyle">
                         <br /><br /> Do you want this room to be permanent?<br />
-                        <input type="radio" name="permancence" value="permanent">Yes
-                        <input type="radio" name="permancence" value="ephemeral">No<br>
+                        <input type="radio" name="permancence" value="true" id="permanent">Yes
+                        <input type="radio" name="permancence" value="false">No<br>
                         <br /> Make room private?<br />
                         <input type="checkbox" name="privacy" value="private" id="check"> Private <img src="/images/lock.png" width="20px">
 
                         <br /><br />
-                        <div style="float: left"><button id="windowbutton">Create</button></div>
+                        <div style="float: left"><button id="windowbutton" type="button">Create</button></div>
                     </form>
 
                     <div> &nbsp; <button id="windowbutton" onclick="window.history.back()">Cancel</button></div>

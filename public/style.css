@@ -313,4 +313,5 @@ a:active {
   /* IE 9+ */
   -o-transform: rotateX(180deg);
   /* Opera */
+  margin-bottom: 0px;
 }

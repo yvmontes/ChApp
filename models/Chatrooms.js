@@ -4,12 +4,13 @@ let Chatrooms = {
   chatRooms: [],
   Chatroom: function(name) {
     this.name = name;
+    this.users = 0;
     this.addMessage = (name, message, username) => {
       orm.AddChat(name, message, username);
     };
   },
-  newChatroom: name => {
-    orm.newTable(name);
+  newChatroom: (name, permanent) => {
+    orm.newTable(name, permanent);
     Chatrooms[name] = new Chatrooms.Chatroom(name);
     Chatrooms.populateArray();
   },
@@ -30,6 +31,16 @@ let Chatrooms = {
   getMessages: async table => {
     let MySqlMessages = await orm.SelectAll(table);
     return MySqlMessages;
+  },
+  isPermanent: table => {
+    return new Promise(async resolve => {
+      let response = await orm.isPermanent(table);
+      resolve(response);
+    });
+  },
+  removeTable: table => {
+    Chatrooms.chatRooms.splice(Chatrooms.chatRooms.indexOf(table), 1);
+    orm.removeTable(table);
   }
 };
 
