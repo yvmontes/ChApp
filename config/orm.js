@@ -31,7 +31,7 @@ let orm = {
     connection.query(
       "CREATE TABLE " +
         table +
-        " (id int AUTO_INCREMENT, username varchar(20) NOT NULL, chat varchar(255) NOT NULL, chatTime datetime NOT NULL PRIMARY KEY);"
+        " (id int AUTO_INCREMENT PRIMARY KEY, username varchar(20) NOT NULL, chat varchar(255) NOT NULL, chatTime datetime NOT NULL);"
     );
     connection.query(
       "INSERT INTO chatrooms (chatRoomName, permanant) VALUES ('" +
@@ -58,12 +58,10 @@ let orm = {
     });
   },
   isPermanent: room => {
-    console.log(room, "room");
     return new Promise(resolve => {
       connection.query(
         "select permanant from chatrooms where chatRoomName = '" + room + "'",
         function(req, res) {
-          console.log(res);
           resolve(res);
         }
       );

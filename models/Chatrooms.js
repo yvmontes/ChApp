@@ -16,6 +16,7 @@ let Chatrooms = {
   },
   populateArray: async callback => {
     let MySqlchatRooms = await orm.selectChatrooms();
+    Chatrooms.chatRooms = [];
     for (i = 0; i < MySqlchatRooms.length; i++) {
       Chatrooms.chatRooms.push(MySqlchatRooms[i].chatRoomName);
     }

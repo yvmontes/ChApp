@@ -7,7 +7,12 @@ module.exports = function(io) {
     let roomName = url[4];
 
     socket.on("createRoom", function(msg) {
-      if (/^[a-zA-Z0-9_]+$/.test(msg.roomName)) {
+      console.log(!Chatrooms.chatRooms.includes(msg.roomName));
+      if (
+        /^[a-zA-Z0-9_]+$/.test(msg.roomName) &&
+        !Chatrooms.chatRooms.includes(msg.roomName)
+      ) {
+        console.log("run");
         Chatrooms.newChatroom(msg.roomName, msg.permanent);
       }
     });
@@ -47,11 +52,14 @@ module.exports = function(io) {
     socket.on("disconnect", function() {
       if (Chatrooms.chatRooms.includes(roomName)) {
         Chatrooms[roomName].users--;
+        console.log(Chatrooms[roomName].users);
         if (Chatrooms[roomName].users <= 0) {
           (async () => {
             let response = await Chatrooms.isPermanent(roomName);
-            if (response.permanent === 0) {
+            console.log(response[0].permanant);
+            if (response[0].permanant === 0) {
               Chatrooms.removeTable(roomName);
+              console.log("table removed");
             }
           })();
         }

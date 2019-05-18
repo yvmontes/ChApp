@@ -35,7 +35,13 @@
                     permanent: permancence
                 }
                 socket.emit("createRoom", outgoingMessage);
-                $("#inputstyle").val("");
+
+
+                socket.on("createRoom", function(roomsName){
+                    console.log("reached")
+                    roomsURL = "/rooms/" + roomsName; //`/rooms/${$("#inputstyle").val()}`
+                    window.location.href = roomsURL;
+                })
             });
         });
     </script>
@@ -57,8 +63,8 @@
                         <br /><br /> Do you want this room to be permanent?<br />
                         <input type="radio" name="permancence" value="true" id="permanent">Yes
                         <input type="radio" name="permancence" value="false">No<br>
-                        <br /> Make room private?<br />
-                        <input type="checkbox" name="privacy" value="private" id="check"> Private <img src="/images/lock.png" width="20px">
+                        <!-- <br /> Make room private?<br />
+                        <input type="checkbox" name="privacy" value="private" id="check"> Private <img src="/images/lock.png" width="20px"> -->
 
                         <br /><br />
                         <div style="float: left"><button id="windowbutton" type="button">Create</button></div>
