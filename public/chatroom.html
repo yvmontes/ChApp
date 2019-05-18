@@ -21,35 +21,31 @@
                 console.log("clicked");
                 e.preventDefault(); // prevents page reloading
                 //remove true ad=nd check for empty string
-                if (true) {
+                if ($("#textbox")) {
                     outgoingMessage = {
                         username: sessionStorage.getItem("username"),
                         message: $("#textbox").val(),
                     }
-                    console.log($("#textbox").val())
-                        // console.log(socket.emit());
-                    console.log(outgoingMessage)
                     socket.emit("chatMessage", outgoingMessage);
                     $("#textbox").val("");
                     return false;
                 }
             });
             socket.on("chatMessage", function(msg) {
-                console.log(`username ${msg.username}, msg ${msg.message}`)
-                $("#chatwindow-div").prepend(`<p class="message">${msg.username}: ${msg.message}</p>`);
+                $("#chatwindow-div").prepend(`<p class="message"><strong>${msg.username}:</strong> ${msg.message}</p>`);
             });
             socket.on("initialMessage", function(msg) {
-                for(let i = msg.length; i > 0; i--){
-                    let username = msg[i -1].username
-                    let message = msg[i - 1].chat
-                    $("#chatwindow-div").prepend(`<p class="message">${username}: ${message}</p>`);
-                    console.log(username);
-                    console.log(message);
+                for(let i = msg.messages.length; i > 0; i--){
+                    let username = msg.messages[i -1].username
+                    let message = msg.messages[i - 1].chat
+                    $("#chatwindow-div").prepend(`<p class="message"><strong>${username}:</strong> ${message}</p>`);
+                }
+                for(let i = 0; i < msg.rooms.length; i++){
+                    $("#users-div").append(`<a href="/rooms/${msg.rooms[i]}"><strong><p>${msg.rooms[i]}</p></strong></a>`)
                 }
             })
         });
     </script>
-
 </head>
 
 <body>
@@ -63,8 +59,8 @@
             <div class="dropdown">
                 <a href="#" class="hvr-box-shadow-inset">View</a>
                 <div class="dropdown-content">
-                    <a href="#" id="users">Users</a>
-                    <a href="#" id="rooms">Rooms</a>
+                    <!-- <a href="#" id="users">Users</a>
+                    <a href="#" id="rooms">Rooms</a> -->
                     <a href="/createroom">Create Room</a>
 
                 </div>
@@ -77,14 +73,12 @@
             <div class="row">
                 <div class="column">
                     <div id="chatwindow-div" class="message">
-                        <p class="message">asdlfk</p>
                     </div>
                 </div>
 
                 <div class="column2">
                     <div id="users-div">
-                        <p><strong>Users</strong> (25)
-                            <br /> Currently showing users
+                        <p>
 
                         </p>
                     </div>

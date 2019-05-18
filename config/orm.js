@@ -27,30 +27,44 @@ let orm = {
     );
   },
 
-  newTable: table => {
+  newTable: (table, permenant) => {
     connection.query(
       "CREATE TABLE " +
         table +
-        " (username varchar(20) NOT NULL, chat varchar(255) NOT NULL, chatTime datetime NOT NULL PRIMARY KEY);"
+        " (id int AUTO_INCREMENT PRIMARY KEY, username varchar(20) NOT NULL, chat varchar(255) NOT NULL, chatTime datetime NOT NULL);"
     );
     connection.query(
-      "INSERT INTO chatrooms (chatRoomName) VALUES ('" + table + "')"
+      "INSERT INTO chatrooms (chatRoomName, permanant) VALUES ('" +
+        table +
+        "'," +
+        permenant +
+        ")"
     );
   },
 
   removeTable: table => {
-    connection.query("DELETE FROM CHATROOMS WHERE chatRoomName = " + table);
+    connection.query(
+      "DELETE FROM CHATROOMS WHERE chatRoomName = '" + table + "'"
+    );
     connection.query("drop table " + table);
+    console.log("done removing");
   },
 
   selectChatrooms: () => {
     return new Promise(resolve => {
-      connection.query("select chatRoomName from chatrooms", function(
-        _req,
-        res
-      ) {
+      connection.query("select * from chatrooms", function(_req, res) {
         resolve(res);
       });
+    });
+  },
+  isPermanent: room => {
+    return new Promise(resolve => {
+      connection.query(
+        "select permanant from chatrooms where chatRoomName = '" + room + "'",
+        function(req, res) {
+          resolve(res);
+        }
+      );
     });
   }
 };

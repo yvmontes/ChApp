@@ -7,21 +7,31 @@ module.exports = function(io) {
     let roomName = url[4];
 
     socket.on("createRoom", function(msg) {
-      console.log("resvhed");
-      if (/^[a-zA-Z0-9_]+$/.test(msg.roomName)) {
-        Chatrooms.newChatroom(msg.roomName);
+      console.log(!Chatrooms.chatRooms.includes(msg.roomName));
+      if (
+        /^[a-zA-Z0-9_]+$/.test(msg.roomName) &&
+        !Chatrooms.chatRooms.includes(msg.roomName)
+      ) {
+        console.log("run");
+        Chatrooms.newChatroom(msg.roomName, msg.permanent);
       }
     });
 
     // if (/^[a-zA-Z0-9_]+$/.test(roomName)) {
     //   if (Chatrooms.chatRooms.includes(roomName)) {
-
-    socket.join(roomName);
-
-    (async () => {
-      let msg = await Chatrooms.getMessages(roomName);
-      io.to(roomName).emit("initialMessage", msg);
-    })();
+    if (Chatrooms.chatRooms.includes(roomName)) {
+      socket.join(roomName);
+      Chatrooms[roomName].users++;
+      console.log(Chatrooms[roomName].users);
+      (async () => {
+        let msg = {
+          messages: await Chatrooms.getMessages(roomName),
+          rooms: Chatrooms.chatRooms
+        };
+        console.log(msg.rooms);
+        io.to(roomName).emit("initialMessage", msg);
+      })();
+    }
 
     socket.on("chatMessage", function(incomingMessage) {
       console.log("message");
@@ -38,5 +48,22 @@ module.exports = function(io) {
     });
     //   }
     // }
+
+    socket.on("disconnect", function() {
+      if (Chatrooms.chatRooms.includes(roomName)) {
+        Chatrooms[roomName].users--;
+        console.log(Chatrooms[roomName].users);
+        if (Chatrooms[roomName].users <= 0) {
+          (async () => {
+            let response = await Chatrooms.isPermanent(roomName);
+            console.log(response[0].permanant);
+            if (response[0].permanant === 0) {
+              Chatrooms.removeTable(roomName);
+              console.log("table removed");
+            }
+          })();
+        }
+      }
+    });
   });
 };
