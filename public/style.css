@@ -271,7 +271,7 @@ a:active {
   /* IE 9+ */
   -o-transform: rotateX(180deg);
   /* Opera */
-  direction: rtl;
+  direction: ltr;
   text-align: left;
 }
 
@@ -285,4 +285,5 @@ a:active {
   /* IE 9+ */
   -o-transform: rotateX(180deg);
   /* Opera */
+  direction: ltr;
 }
