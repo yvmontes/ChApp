@@ -4,7 +4,7 @@ let Chatrooms = {
   chatRooms: [],
   Chatroom: function(name) {
     this.name = name;
-    this.addMessage = (message, username) => {
+    this.addMessage = (name, message, username) => {
       orm.AddChat(name, message, username);
     };
   },
@@ -26,6 +26,10 @@ let Chatrooms = {
       let name = Chatrooms.chatRooms[i];
       Chatrooms[name] = new Chatrooms.Chatroom(name);
     }
+  },
+  getMessages: async table => {
+    let MySqlMessages = await orm.SelectAll(table);
+    return MySqlMessages;
   }
 };
 

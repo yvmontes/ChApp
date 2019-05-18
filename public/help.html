@@ -7,91 +7,58 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ChApp</title>
 
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
-    
-<link rel="stylesheet" href="../public/style.css" type="text/css" />
-<script>
-window.onload=function(){
-    var form = document.getElementsByTagName("form")[0];
-    form.onsubmit = function(e){
-        e.preventDefault();
-        var messege = document.getElementsByName("messege")[0].value;
-        var newDiv = document.createElement("div");
-        newDiv.innerText = messege;
-        document.getElementById("chatroom").appendChild(newDiv);
-    }
-}
-</script>
 
+
+    <!-- <script src="js/index.js"></script> -->
 </head>
 
 <body>
+    <div class="container">
 
-<div class="container">
+        <div id="help-title"><img src="/images/chaticon2.png" width="25px"> ChApp - Help
+            <div class="imgholder"><img src="/images/mmc.png" width="70px"></div>
+        </div>
+
+        <div class="chatapp" id="help">
+
+            <div class="row">
+                <div class="column3">
+
+                    <div class="content">
+                        <p><b>When you make your own chatroom is it permanent?</b><br/> You have the option to make it permanent.
+                        </p>
+
+                        <p><b>What happens if I don't make it permanent?</b><br/> When all users leave the room the room will close on it's own if you do not make it permanent.
+                        </p>
+
+                        <b>What happens if I decide to make my room private?</b><br/> Only users with the link to the room will have access to it.
 
 
-    <div class="window-outline">
-    <div id="window-title"><img src="images/chaticon2.png" width="25px"> Welcome to ChApp <div class="imgholder"><img src="images/mmc.png" width="70px"></div></div>  
-    <div class="chatapp">
+                        <br/><br/>
+                        <div> <button id="windowbutton" onclick="window.history.back()">Cancel</button></div>
 
-
-            <div class="dropdown">
-                    <a href="#" class="hvr-box-shadow-inset">View</a>
-                    <div class="dropdown-content">
-                        <a href="#" id="users">Users</a>
-                        <a href="#" id="rooms">Rooms</a>
-                      <a href="createroom.html">Create Room</a>
-                      
                     </div>
-                  </div>
-                   &nbsp; <a href="help.html" class="hvr-box-shadow-inset">Help</a>
-        <hr>
-
-        <div class="row">
-
-            <div class="column">
-                <div id="chatwindow-div">
-                    <p>Chatroom
-                        <br/>
-                        Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Quis varius quam quisque id diam vel quam. At varius vel pharetra vel turpis nunc eget lorem. Quis hendrerit dolor magna eget est lorem. Ullamcorper eget nulla facilisi etiam dignissim diam quis. Aliquam etiam erat velit scelerisque. Montes nascetur ridiculus mus mauris vitae ultricies leo integer. At quis risus sed vulputate. A pellentesque sit amet porttitor. Porta nibh venenatis cras sed felis eget velit. Morbi tristique senectus et netus et malesuada fames. In fermentum posuere urna nec tincidunt praesent semper feugiat. Leo in vitae turpis massa sed elementum tempus egestas sed. Auctor neque vitae tempus quam. Felis donec et odio pellentesque diam volutpat commodo sed egestas. Risus viverra adipiscing at in tellus integer feugiat scelerisque. Cursus turpis massa tincidunt dui ut. Massa sed elementum tempus egestas sed sed. Vel risus commodo viverra maecenas accumsan lacus. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia.
-
-
-                    </p>
                 </div>
+
             </div>
 
-            <div class="column2">
-                <div id="users-div">
-                    <p><strong>Users</strong> (25)
-                    <br/>
-                    Currently showing users
-                    
-                </p>
-                </div>
-            </div>
-
-          <div class="row" id="form-div">
-                <form>
-                    <textarea class="form-control" id ="textbox" rows="4" cols="150" placeholder="Type something..."></textarea>
-                    <br />
-                    <button id="windowbutton">Send</button>
-                </form>
         </div>
-    </div>
 
-        </div>
+
     </div>
 
 
-</div>
+    <!-- JAVASCRIPT -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<!-- JAVASCRIPT -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="./js/index.js"></script>
+
+
+
 </body>
 
 </html>
