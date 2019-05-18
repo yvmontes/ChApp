@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+//so on the following make sure we connect the username and the color w the new username in the server.
 <html lang="en">
 
 <head>
@@ -8,68 +9,62 @@
     <title>ChApp</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="/style.css" type="text/css" />
+    <link rel="stylesheet" href="../public/style.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
 
-    <!-- <script src="js/index.js"></script> -->
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 
-
-    <script>
-        $(function() {
-            const socket = io()
-            $("#windowbutton").click(function(e) {
-                console.log("clicked");
-                e.preventDefault(); // prevents page reloading
-                //remove true ad=nd check for empty string
-                outgoingMessage = {
-                    roomName: $("#inputstyle").val()
-                }
-                socket.emit("createRoom", outgoingMessage);
-                $("#inputstyle").val("");
-            });
-        });
-    </script>
+    <script src="js/index.js"></script>
 </head>
 
 <body>
+
+
+
+
+
+
+
     <div class="container">
 
-        <div id="createroom-title"><img src="/images/chaticon2.png" width="25px"> ChApp - Create a Room
-            <div class="imgholder"><img src="/images/mmc.png" width="70px"></div>
-        </div>
+        <div id="createroom-title"><img src="images/chaticon2.png" width="25px"> ChApp - Create a Room <div class="imgholder"><img src="images/mmc.png" width="70px"></div></div>
 
         <div class="chatapp" id="createroom">
 
-            <div class="row">
-                <div class="column3">
-                    <form>
-                        Name of room: <input name="firstname" type="text" id="inputstyle">
-                        <br /><br /> Do you want this room to be permanent?<br />
-                        <input type="radio" name="permancence" value="permanent">Yes
-                        <input type="radio" name="permancence" value="ephemeral">No<br>
-                        <br /> Make room private?<br />
-                        <input type="checkbox" name="privacy" value="private" id="check"> Private <img src="/images/lock.png" width="20px">
+        <div class="row">
+            <div class="column">
+                <form>
+                    Name of room:  <input name="firstname" type="text" id="inputstyle">
+                    <br/><br/>
+                    Do you want this room to be permanent?<br/>
+                    <input type="radio" name="permancence" value="permanent">Yes
+                    <input type="radio" name="permancence" value="ephemeral">No<br>
+                    <br/>
+                    Make room private?<br/>
+                    <input type="checkbox" name="privacy" value="private" id="check"> Private <img src="images/lock.png" width="20px">
 
-                        <br /><br />
-                        <div style="float: left"><button id="windowbutton">Create</button></div>
-                    </form>
-
-                    <div> &nbsp; <button id="windowbutton" onclick="window.history.back()">Cancel</button></div>
+                    <br/><br/>
+                    <button id="windowbutton">Create</button></form>
+                </form>
 
                 </div>
             </div>
 
         </div>
 
-    </div>
+        </div>
+
+
     </div>
 
-    <!-- JAVASCRIPT -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- JAVASCRIPT -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
 </body>
 
 </html>
