@@ -10,7 +10,7 @@ Format: ![Alt Text](url)
 Below, I added a link of a video on how the app works.
 
 **Video:**
-https://drive.google.com/file/d/17lvSWUbYUaf6qUqzdj03UaSxzJQ2Godd/view
+https://drive.google.com/file/d/17lvSWUbYUaf6qUqzdj03UaSx
 
 This was a collaboration between Yvette Montes, Parker Bjur, & Lupe De Alba
 
